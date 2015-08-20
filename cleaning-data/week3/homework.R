@@ -59,11 +59,12 @@ finalExe <- function() {
     mergedDf <- merge(grossDf, eduDf, by.x = "V1", by.y = "CountryCode", sort = TRUE)
     arrange(mergedDf, desc(V2))
     
+    # 4
+    # What is the average GDP ranking for the "High income: OECD" and "High income: nonOECD" group?
+    
     oecd <- filter(mergedDf, Income.Group == "High income: OECD")
     nonOECD <- filter(mergedDf, Income.Group == "High income: nonOECD")
     
-    # 4
-    # What is the average GDP ranking for the "High income: OECD" and "High income: nonOECD" group?
     mean(oecd$V2, na.rm = TRUE)
     mean(nonOECD$V2, na.rm = TRUE)
     
@@ -71,6 +72,7 @@ finalExe <- function() {
     # Cut the GDP ranking into 5 separate quantile groups. 
     # Make a table versus Income.Group. 
     # How many countries are Lower middle income but among the 38 nations with highest GDP?
+    
     quantile(mergedDf$V2, probs = seq(0.2, 1, 0.2))
     
     q1 <- mergedDf$V2 <= 38
